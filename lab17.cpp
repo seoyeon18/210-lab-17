@@ -1,4 +1,6 @@
+// COMSC-210 | Lab 17 | Seoyeon An
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 const int SIZE = 7;  
@@ -17,35 +19,42 @@ void deleteNode(Node *&head, int pos);
 void insertNode(Node *&head, int pos, float val);
 void deleteList(Node *&head);
 
+
+
 int main() {
     Node *head = nullptr;
     int count = 0;
 
     // create a linked list of size SIZE with random numbers 0-99
     for (int i = 0; i < SIZE; i++) {
-        int tmp_val = rand() % 100;
-        Node *newVal = new Node;
+        int tmp_val = rand() % RAND_MAX_VAL;
+        addFront(head, tmp_val);
         
         // adds node at head
-        if (!head) {
-            head = newVal;
-            newVal->next = nullptr;
-            newVal->value = tmp_val;
-        }
-        else {
-            newVal->next = head;
-            newVal->value = tmp_val;
-            head = newVal;
-        }
+        // if (!head) {
+        //     head = newVal;
+        //     newVal->next = nullptr;
+        //     newVal->value = tmp_val;
+        // }
+        // else {
+        //     newVal->next = head;
+        //     newVal->value = tmp_val;
+        //     head = newVal;
+        // }
     }
     output(head);
 
-    // deleting a node
+    
     cout << "Which node to delete? " << endl;
     output(head);
+
     int entry;
     cout << "Choice --> ";
     cin >> entry;
+
+    deleteNode(head, entry);
+    output(head);
+    }
 
     // traverse that many times and delete that node
     Node *current = head;
@@ -71,14 +80,24 @@ int main() {
 
     // insert a node
     cout << "After which node to insert 10000? " << endl;
-    count = 1;
-    current = head;
-    while (current) {
-        cout << "[" << count++ << "] " << current->value << endl;
-        current = current->next;
-    }
+    output(head);
+    // count = 1;
+    // current = head;
+    // while (current) {
+    //     cout << "[" << count++ << "] " << current->value << endl;
+    //     current = current->next;
+    // }
     cout << "Choice --> ";
     cin >> entry;
+    insertNode(head, entry, 10000);
+    output(head);
+
+    // deleting the linked list
+    deleteList(head);
+    output(head);
+
+    return 0;
+}
 
     current = head;
     prev = nullptr;  // reset prev to nullptr for same reason
