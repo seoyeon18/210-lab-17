@@ -129,7 +129,7 @@ int main() {
     }
     head = nullptr;
     output(head);
-
+  
     return 0;
 }
 
@@ -152,4 +152,23 @@ void addFront(Node *&head, float val) {
     newNode->value = val;
     newNode->next = head;
     head = newNode;
+}
+
+void addTail(Node *&head, float val) {
+    Node *newNode = new Node;
+    newNode->value = val;
+    newNode->next = nullptr;
+
+
+}
+
+
+void deleteList(Node *&head) {
+    Node *current = head;
+    while (current) {
+        Node *nextNode = current->next;
+        delete current;
+        current = nextNode;
+    }
+    head = nullptr;
 }
